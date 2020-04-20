@@ -3,12 +3,13 @@
 import socket
 import time
 
-class VBusClient():
+class Client():
 	def __init__(self, host, port, logging=False, timeout_msec=1000):
 		"""
-		Initializes the virtual bus
+		Initializes the virtual bus client
 		host:    The ip address or the domain name of the server.
 		port:    The port of the server.
+		logging: {En/dis)able the debugging printing.
 		timeout: The time to wait after an unsuccessfull connection [in sec].
 		"""
 		self.host = host
@@ -21,7 +22,7 @@ class VBusClient():
 		self._open()
 
 	def __del__(self):
-		"""Disconnects on object deletion"""
+		"""Deinitialises the virtual bus client"""
 		self._close()
 
 	def log(self, msg):
@@ -66,8 +67,7 @@ class VBusClient():
 			self.sock.shutdown(1)
 			self.sock.close()
 		except Exception as e:
-			#self.log("Could not close socket")
-			pass
+			self.log("Could not close socket")
 		finally:
 			self.sock = None
 			#self.log("Closed")
@@ -105,7 +105,7 @@ class VBusClient():
 
 def main():
 	try:
-		b = VBusClient(host="127.0.0.1", port=8888, logging=True)
+		b = Client(host="127.0.0.1", port=8888, logging=True)
 		while True:
 			b.sent("Hello from Virtual Bus Client!")
 

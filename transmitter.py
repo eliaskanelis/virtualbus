@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from virtualbus.vBusClient import VBusClient
+from virtualbus.client import Client
 
 import random
 import time
@@ -8,7 +8,7 @@ import time
 
 def main():
 	try:
-		b = VBusClient(host="127.0.0.1", port=8888, logging=False)
+		b = Client(host="127.0.0.1", port=8888, logging=False)
 		while True:
 			v = random.randint(0,100)
 			msg = "\033[31m{}: {}\033[m".format( "Speed", str(v) )

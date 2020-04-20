@@ -1,1 +1,1 @@
-from virtualbus.vBusClient import VBusClient
+from virtualbus.client import Client
