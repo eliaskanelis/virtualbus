@@ -7,8 +7,8 @@ import time
 
 
 def main():
-	b = VBusClient(host="127.0.0.1", port=8888, logging=False)
 	try:
+		b = VBusClient(host="127.0.0.1", port=8888, logging=False)
 		while True:
 			v = random.randint(0,100)
 			msg = "\033[31m{}: {}\033[m".format( "Speed", str(v) )

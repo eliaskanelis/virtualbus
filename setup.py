@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
   name = 'virtualbus',
   packages = ['virtualbus'],
-  version = 'v0.0',
+  version = 'v0.1',
   license='MIT',
   description = 'Virtual bus',
   author = 'Kanelis Elias',
   author_email = 'hkanelhs@yahoo.gr',
   url = 'https://github.com/tedicreations/virtualbus',
-  download_url = 'https://github.com/TediCreations/virtualbus/archive/v0.0.tar.gz',
+  download_url = 'https://github.com/TediCreations/virtualbus/archive/v0.1.tar.gz',
   keywords = ['virtual', 'bus', 'socket', 'networking'],
   install_requires=[],
   classifiers=[

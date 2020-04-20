@@ -6,8 +6,8 @@ import random
 
 
 def main():
-	b = VBusClient(host="127.0.0.1", port=8888, logging=False)
 	try:
+		b = VBusClient(host="127.0.0.1", port=8888, logging=False)
 		while True:
 			msg = b.receive()
 			print("Received: '{}'".format(msg))
