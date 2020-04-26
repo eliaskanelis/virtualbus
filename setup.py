@@ -6,11 +6,21 @@ import subprocess
 
 ################################################################################
 # Git version
-rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
+try:
+	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
+except Exception:
+	try:
+		f = open("RELEASE-VERSION", "r")
+		try:
+			rv = f.readlines()[0].strip()
+		finally:
+			f.close()
+	except:
+		pass
 
 if "dirty" in rv:
 	print("Repository is dirty... Try to clean it!")
-	#exit(0)
+	exit(0)
 
 label = rv.split("-")
 majorDotMinor = label[0]
