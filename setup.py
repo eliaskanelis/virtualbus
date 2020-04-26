@@ -5,21 +5,24 @@ from distutils.core import setup
 
 ################################################################################
 # Git version
-rv = "v0.0-0-x"
 try:
 	import subprocess
 	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
+
+
+	if "dirty" in rv:
+		print("Repository is dirty... Try to clean it!")
+		exit(0)
+
+	label = rv.split("-")
+	majorDotMinor = label[0]
+	build = label[1]
 except Exception:
-	pass
+	majorDotMinor = "v0.0"
+	build = "0"
 
-if "dirty" in rv:
-	print("Repository is dirty... Try to clean it!")
-	exit(0)
-
-label = rv.split("-")
-majorDotMinor = label[0]
-build = label[1]
 version = majorDotMinor + "." + build
+print("Version: {}".format(version))
 
 ################################################################################
 # Long description
