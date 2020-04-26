@@ -2,21 +2,14 @@
 
 from distutils.core import setup
 
-import subprocess
 
 ################################################################################
 # Git version
 try:
+	import subprocess
 	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
 except Exception:
-	try:
-		f = open("RELEASE-VERSION", "r")
-		try:
-			rv = f.readlines()[0].strip()
-		finally:
-			f.close()
-	except:
-		pass
+	rv = "v0.0.0"
 
 if "dirty" in rv:
 	print("Repository is dirty... Try to clean it!")
