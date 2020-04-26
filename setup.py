@@ -5,11 +5,12 @@ from distutils.core import setup
 
 ################################################################################
 # Git version
+rv = "v0.0.0"
 try:
 	import subprocess
 	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
 except Exception:
-	rv = "v0.0.0"
+	pass
 
 if "dirty" in rv:
 	print("Repository is dirty... Try to clean it!")
