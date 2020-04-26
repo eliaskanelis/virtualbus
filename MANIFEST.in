@@ -1,4 +1,4 @@
-include README.md
+include README.md VERSION
 include setup.py
 include transmitter.py
 include receiver.py
