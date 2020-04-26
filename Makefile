@@ -8,9 +8,5 @@ clean:
 	rm -rf dist
 
 .PHONY: publish
-publish: clean
-	#rm -rf MANIFEST
-	#rm -rf dist
-	python setup.py sdist
-
+publish: clean package
 	twine upload dist/*
