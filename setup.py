@@ -5,7 +5,7 @@ from distutils.core import setup
 
 ################################################################################
 # Git version
-rv = "v0.0.0"
+rv = "v0.0-0-x"
 try:
 	import subprocess
 	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
