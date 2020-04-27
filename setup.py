@@ -6,64 +6,31 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-################################################################################
-try:
-	# Git version when creating package
-	import subprocess
-	rv = subprocess.check_output(["git", "describe", "--always", "--dirty", "--long", "--tags"]).strip().decode()
+#-------------------------------------------------------------------------------
 
-	# Dirty repos are not allowed
-	if "dirty" in rv:
-		print("Repository is dirty... Try to clean it!")
-		exit(0)
+# Package name
+name="virtualbus"
 
-	label = rv.split("-")
-	majorDotMinor = label[0]
-	build = label[1]
+# Import version info
+exec(open(path.join(here, '{}/version.py'.format(name))).read())
 
-	# Write version to a file for use inpackage management
-	try:
-		f = open(path.join(here, 'VERSION'), "w")
-		f.write(majorDotMinor + "-" + build + "\n")
-		f.close()
-	except Exception:
-			 pass
-except Exception:
-	# Version from file when installing
-	try:
-		f = open(path.join(here, 'VERSION'), "r")
-		label = f.read()
-		f.close()
-		majorDotMinor = label[0]
-		build = label[1]
-	except Exception:
-		print("Failed!")
-		exit(1)
-		#majorDotMinor = "v0.0"
-		#build = "0"
-
-version = majorDotMinor + "." + build
-print("Version: {}".format(version))
-
-################################################################################
 # Long description
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'README'), encoding='utf-8') as f:
     long_description = f.read()
 
-
-################################################################################
+#-------------------------------------------------------------------------------
 # Setup config
 setup(
-	name = 'virtualbus',
-	packages = ['virtualbus'],
-	version = version,
-	license='MIT',
+	name = name,
+	packages = [name],
+	version = __version__,
+	license = __license__,
 	description = 'Virtual bus',
 	long_description = long_description,
-	author = 'Kanelis Elias',
-	author_email = 'hkanelhs@yahoo.gr',
+	author = __author__,
+	author_email = __email__,
 	url = 'https://github.com/tedicreations/virtualbus',
-	download_url = 'https://github.com/TediCreations/virtualbus/archive/' + str(majorDotMinor) + '.tar.gz',
+	download_url = 'https://github.com/TediCreations/virtualbus/archive/' + __version__ + '.tar.gz',
 	keywords = ['virtual', 'bus', 'socket', 'networking'],
 	#install_requires=[],
 	classifiers=[
