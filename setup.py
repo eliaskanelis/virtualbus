@@ -29,10 +29,15 @@ setup(
 	long_description = long_description,
 	author = __author__,
 	author_email = __email__,
-	url = 'https://github.com/tedicreations/virtualbus',
-	download_url = 'https://github.com/TediCreations/virtualbus/archive/' + __version__ + '.tar.gz',
+	url = f"https://github.com/tedicreations/{name}",
+	download_url = "https://github.com/TediCreations/{name}/archive/" + __version__ + '.tar.gz',
 	keywords = ['virtual', 'bus', 'socket', 'networking'],
 	#install_requires=[],
+	entry_points={
+	        "console_scripts": [
+			"vbus = virtualbus.client:main",
+		]
+	},
 	classifiers=[
 		'Development Status :: 3 - Alpha',
 		'Intended Audience :: Developers',

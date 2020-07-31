@@ -1,5 +1,3 @@
 include README
 include LICENSE
 include setup.py
-include transmitter.py
-include receiver.py
